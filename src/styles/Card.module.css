@@ -1,0 +1,28 @@
+.card {
+  padding: 5px;
+  margin-top: 30px;
+}
+.card img {
+  width: 250px;
+  height: 250px;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.card .price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.card .price h6 {
+  color: #666;
+}
+
+.card .quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
