@@ -15,9 +15,6 @@ const Navbar = () => {
           <Nav.Link to="/store" as={NavLink}>
             Store
           </Nav.Link>
-          <Nav.Link to="/about" as={NavLink}>
-            About
-          </Nav.Link>
         </Nav>
         <Button onClick={() => openCart()} variant="btn btn-primary" className="rounded-circle" style={{ width: "3rem", height: "3rem" }}>
           <svg fill="#fff" width="20" height="20" className="bi bi-bag-plus" viewBox="0 0 16 16">
