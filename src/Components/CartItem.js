@@ -1,11 +1,26 @@
 import React from "react";
 import { Button, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import storeItems from "../data/storeItems.json";
+import { useState, useEffect } from "react";
 
 const CartItem = ({ id, quantity }) => {
+  const url = "https://fakestoreapi.com/products";
+  const [products, setProducts] = useState([]);
+
+  const getProducts = () => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      });
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   const { removeItemCart } = useShoppingCart();
-  const item = storeItems.find((i) => i.id === id);
+  const item = products.find((i) => i.id === id);
   if (item == null) return null;
   return (
     <Stack direction="horizontal" gap={3} className="d-flex align-items-center border-bottom mb-3 pb-2">

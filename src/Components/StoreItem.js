@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import style from "../styles/Card.module.css";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { NavLink } from "react-router-dom";
 
 const StoreItem = ({ id, price, title, description, image }) => {
   const { getItemsQuantity, increaseCartQuantity, decreaseCartQuantity, removeItemCart } = useShoppingCart();
@@ -12,27 +13,36 @@ const StoreItem = ({ id, price, title, description, image }) => {
       <Card.Img src={image} variant="top" />
       <Card.Body>
         <Card.Title className={style.price}>
-          <h5 className="m-0">{title.split("", 20)}</h5>
+          <h5 className="m-0">{title.split("", 20)} ...</h5>
           <h6 className="fw-bold text-danger fs-5">{price}</h6>
         </Card.Title>
-        <p>{description.split("", 40)}</p>
-        <div className="mt-auto">
-          {quantity === 0 ? (
-            <Button onClick={() => increaseCartQuantity(id)} className="w-100">
-              Add To Cart
-            </Button>
-          ) : (
-            <div>
-              <div className={style.quantity}>
-                <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
-                <h5>{quantity} in cart</h5>
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
-              </div>
-              <Button onClick={() => removeItemCart(id)} className="btn btn-danger w-100">
-                Remove
-              </Button>
+        <p>{description.split("", 40)} ...</p>
+        <div className="row">
+          <div className="col-4">
+            <NavLink to={`/product/${id}`} className="btn btn-success" href="/">
+              Details
+            </NavLink>
+          </div>
+          <div className="col-8">
+            <div className="mt-auto">
+              {quantity === 0 ? (
+                <Button onClick={() => increaseCartQuantity(id)} className="w-100">
+                  Add To Cart
+                </Button>
+              ) : (
+                <div>
+                  <div className={style.quantity}>
+                    <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                    <h5>{quantity} in cart</h5>
+                    <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                  </div>
+                  <Button onClick={() => removeItemCart(id)} className="btn btn-danger w-100">
+                    Remove
+                  </Button>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </Card.Body>
     </Card>
